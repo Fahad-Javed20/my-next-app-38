@@ -1,7 +1,18 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    appDir: true, // only needed if using App Router
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "", // leave empty
+        pathname: "/**", // allow all paths
+      },
+    ],
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
