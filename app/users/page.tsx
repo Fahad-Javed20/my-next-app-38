@@ -1,9 +1,9 @@
 
 import React from 'react'
-import prisma from '@/lib/prisma'
+import { getAllUsers } from '@/lib/user.service';
 
 const UserPage = async () => {
-  const users = await prisma.user.findMany()
+  const users = await getAllUsers();
   
 
     
