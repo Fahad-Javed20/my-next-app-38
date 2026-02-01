@@ -3,11 +3,12 @@ import prisma from '@/lib/prisma';
 type User = {
   id: number;
   email: string;
-    name: string;
-    department: string;
+    username: string;
+    bloodgroup: string;
     createdAt: Date;
     updatedAt: Date;
 };
+
 export async function getAllUsers(): Promise<User[]> {
   return prisma.user.findMany();
 }
@@ -19,27 +20,27 @@ export async function getUserById(id: number): Promise<User | null> {
 }
 
 export async function createUser(data: {
-  email: string;
-    name: string;   
-    department: string;
-}): Promise<User> {
-  return prisma.user.create({
-    data,
-  });
+    username: string;
+    email: string;
+    password: string;
+    bloodgroup: string;
+}) {
+  return prisma.user.create({ data });
 }
 
 export async function updateUser(id: number, data: {
-  email?: string;
-    name?: string;   
-    department?: string;
-}): Promise<User> {
+    username?: string;
+    email?: string;
+    password?: string;
+    bloodgroup?: string;
+}) {  
   return prisma.user.update({
     where: { id },
     data,
   });
 }
 
-export async function deleteUser(id: number): Promise<User> {
+export async function deleteUser(id: number) {
   return prisma.user.delete({
     where: { id },
   });
