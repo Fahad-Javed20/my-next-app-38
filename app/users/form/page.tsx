@@ -1,7 +1,7 @@
 "use client";
 
+import { createUserAction } from "@/app/actions/user.action";
 import { useForm } from "react-hook-form";
-
 
 interface FormData {
   username: string;
@@ -16,9 +16,10 @@ const UserForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-    const onSubmit = (data: FormData) => {
-    console.log("Form Data Submitted: ", data);
-  }
+
+  const onSubmit = async (data: FormData) => {
+    await createUserAction(data);
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
