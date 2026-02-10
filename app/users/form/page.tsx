@@ -13,12 +13,14 @@ interface FormData {
 const UserForm = () => {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
     await createUserAction(data);
+    reset();
   };
 
   return (
